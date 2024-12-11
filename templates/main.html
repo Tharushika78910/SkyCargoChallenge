@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Game</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div id="game-container">
+
+            <h1>SkyCargo Challenge</h1>
+
+        <div id="status-panel">
+            <h2>Player Status</h2>
+            <p><strong>Name:</strong> <span id="player-name">Loading...</span></p>
+            <p><strong>Current Airport:</strong> <span id="current-airport">Loading...</span></p>
+            <p><strong>Fuel:</strong> <span id="fuel-level">Loading...</span></p>
+            <p><strong>Money:</strong> <span id="money-balance">Loading...</span></p>
+            <p><strong>Cargo Collected:</strong> <span id="cargo-collected">Loading...</span></p>
+            <p> </p>
+            <h3>To win</h3>
+            <p>You should reach: LIPE</p>
+            <p>You should collect: 8 cargoes</p>
+        </div>
+
+        <div id="map" style="height: 500px; margin-top: 20px;"></div>
+
+        <div id="action-panel">
+            <h2>Actions</h2>
+            <label for="airport-select">Choose Next Airport:</label>
+            <select id="airport-select">
+                <!-- Options populated dynamically -->
+            </select>
+            <button onclick="travel()">Travel</button>
+
+            <button onclick="collectCargo()">Collect Cargo</button>
+
+            <label for="fuel-input">Purchase Fuel Amount:</label>
+            <input type="number" id="fuel-input" min="1" placeholder="Enter fuel amount">
+            <button onclick="buyFuel()">Buy Fuel</button>
+
+
+            <button onclick="quitGame()">Quit Game</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="/static/main.js"></script>
+</body>
+</html>

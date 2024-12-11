@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Cargo Challenge</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body style="background-image: url('static/images/plane.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+    <div id="home">
+        <h1>Sky Cargo Challenge</h1>
+        <button id="play-now">Play Now</button>
+        <button onclick="location.href='/about'">About the Game</button>
+    </div>
+    <script>
+        // Event listener for the "Play Now" button
+        document.getElementById('play-now').addEventListener('click', async () => {
+            const playerName = prompt('Enter your name:');
+            if (!playerName) {
+                alert('Name is required to play the game.');
+                return;
+            }
+
+            try {
+                // Send the player name to the server to register
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: playerName })
+                });
+
+                const data = await response.json(); // Parse the response
+                console.log('Response from backend:', data); // Debug the backend response
+
+                if (data.message === 'Player registered') {
+                    // Redirect to main.html with player_id as a query parameter
+                    window.location.href = `/main?player_id=${data.player_id}`;
+                } else {
+                    alert('Error registering player: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Could not register player.');
+            }
+        });
+    </script>
+</body>
+</html>
